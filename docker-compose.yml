@@ -1,0 +1,22 @@
+version: "3"
+services:
+  #spring app configuration
+  app:
+    image: spirng-appp
+    build: .
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      MYSQL_HOST: mysqldb
+
+  # mysql configuration
+  mysqldb:
+    image: mysql
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: products
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - C:\Users\wonde\OneDrive\Desktop\db:/var/lib/mysql
