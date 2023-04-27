@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepository  productRepository;
     @PostMapping("/products")
-    public ResponseEntity<Object> saveProducts(@RequestBody ProductDto productDto){
-        Products products=new Products();
-        BeanUtils.copyProperties(productDto,products);
-       return  new ResponseEntity<>(productRepository.save(products), HttpStatus.OK);
+    public ResponseEntity<Object> saveProducts(@RequestBody ProductDto productDto) {
+        Products products = new Products();
+        BeanUtils.copyProperties(productDto, products);
+        return new ResponseEntity<>(productRepository.save(products), HttpStatus.OK);
     }
 }
