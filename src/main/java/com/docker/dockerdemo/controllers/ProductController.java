@@ -1,4 +1,4 @@
-package com.docker.dockerdemo;
+package com.docker.dockerdemo.controllers;
 
 import com.docker.dockerdemo.dtos.ProductDto;
 import com.docker.dockerdemo.entities.Products;
