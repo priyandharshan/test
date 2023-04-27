@@ -6,7 +6,7 @@ pipeline {
     stage('Docker Build') {
     	agent any
       steps {
-      	sh 'docker build -t demo:latest .'
+      	sh 'mvn clean install'
       }
     }
   }
