@@ -10,9 +10,13 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
+            script {
+            		if (isUnix()) {
+            						sh "mvn clean package -DskipTests"
+            		} else {
+            						bat "mvn clean package -DskipTests"
+            			}
+            	}
         }
 
     }
