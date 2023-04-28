@@ -1,6 +1,5 @@
 node {
     def dockerImageTag ="spring-boot-deploy"
-        notifyBuild('STARTED')
         stage('clone repo')
         {
             git url:'https://github.com/priyandharshan/test.git',
