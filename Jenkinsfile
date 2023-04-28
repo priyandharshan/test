@@ -1,11 +1,19 @@
 #!groovy
 
 pipeline {
-	agent {
-        stages {
-            stage('Build') {
-                steps {
-                    sh 'mvn -B -DskipTests clean package'
-                }
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/priyandharshan/test.git'
             }
-}   }   }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+    }
+}
