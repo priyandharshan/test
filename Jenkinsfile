@@ -1,23 +1,20 @@
-#!groovy
-
-pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/priyandharshan/test.git'
-            }
+node {
+    def dockerImageTag ="spring-boot-deploy"
+    try{
+        notifyBuild('STARTED')
+        stage('clone repo')
+        {
+            git url:'https://github.com/priyandharshan/test.git',
+            branch :'main'
         }
-        stage('Build') {
-            script {
-            		if (isUnix()) {
-            						sh "mvn clean package -DskipTests"
-            		} else {
-            						bat "mvn clean package -DskipTests"
-            			}
-            	}
-        }
+        stage('Deploy docker')
+        sh 'docker-compose -f docker-compose.yml -d'
+    }
+    }catch(e){
+        currentBuild.result = "FAILED"
+        throw e
+    }finally{
+        notifyBuild(currentBuild.result)
+     }
 
     }
-}
