@@ -7,7 +7,10 @@ node {
             branch :'main'
         }
         stage('Deploy docker')
-        sh 'docker-compose -f docker-compose.yml -d'
-
+        {
+         script {
+                 sh 'docker-compose -f docker-compose.yml up -d'
+              }
+             }
 
     }
