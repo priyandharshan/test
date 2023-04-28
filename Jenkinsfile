@@ -1,6 +1,5 @@
 node {
     def dockerImageTag ="spring-boot-deploy"
-    try{
         notifyBuild('STARTED')
         stage('clone repo')
         {
@@ -9,12 +8,6 @@ node {
         }
         stage('Deploy docker')
         sh 'docker-compose -f docker-compose.yml -d'
-    }
-    }catch(e){
-        currentBuild.result = "FAILED"
-        throw e
-    }finally{
-        notifyBuild(currentBuild.result)
-     }
+
 
     }
